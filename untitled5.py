@@ -307,17 +307,6 @@ def update_app_ui(Tabs, start_date, end_date, group, report_type,device_date,ser
         }
         )
         return [dcc.Graph(figure = figure), html.Br(), cardDiv, html.Br(), datatable]
-    elif Tabs == "tab-3":
-        if service_date is None or service_date == []:
-            service_analytics_data = service_data["FeatureName"].value_counts().reset_index(name = "Count")
-        
-        else:
-            service_analytics_data = service_data["FeatureName"][service_data["FeatureEventDate"].isin(service_date)].value_counts().reset_index(name = "Count")
-        fig = px.pie(service_analytics_data, names = "index", values = "Count",color = "index", template="plotly_dark")
-        
-        fig.update_layout(autosize=True, margin=dict(l=0, r=0, t=25, b=20),
-                          )
-        return html.Div(dcc.Graph(figure = fig), className = "graph")
     
     
     
@@ -334,11 +323,8 @@ def update_app_ui(Tabs, start_date, end_date, group, report_type,device_date,ser
                           margin=dict(l=0, r=0, t=25, b=20),
                           ) 
         return html.Div(dcc.Graph(figure = fig), className = "graph")
-    else:
-        return None
-        
     
-    '''elif Tabs == "tab-3":
+    elif Tabs == "tab-3":
         if service_date is None or service_date == []:
             service_analytics_data = service_data["FeatureName"].value_counts().reset_index(name = "Count")
         
@@ -351,7 +337,7 @@ def update_app_ui(Tabs, start_date, end_date, group, report_type,device_date,ser
         return html.Div(dcc.Graph(figure = fig), className = "graph")
     
     else:
-        return None'''
+        return None
         
     
     
